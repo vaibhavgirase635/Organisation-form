@@ -10,6 +10,6 @@ urlpatterns = [
     path('register/', views.UserRegistrationView.as_view(), name='success'),
     path('login/', views.LoginPage, name='login'),
     path('logout/', LogoutView.as_view(next_page=settings.LOGOUT_REDIRECT_URL), name='logout'),
-
+    path('phonecall/', views.phonecall, name='phonecall'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

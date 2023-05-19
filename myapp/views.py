@@ -7,8 +7,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
+from twilio.rest import Client
 # Create your views here.
-@method_decorator(staff_member_required, name='dispatch')
+
+@method_decorator(login_required, name='dispatch')
 class OrganisationView(View):
     def get(self,request):
         form = OrganisationForm()
@@ -51,4 +53,17 @@ def LoginPage(request):
         else:
             return HttpResponse("Username or Password is incorrect!!!")
     return render (request,'user_login.html')
+
+def phonecall(request):
+    
+    account_sid = 'ACbea04b09b51f590c97eec87fa6b25e10'
+    auth_token = '00121e7f5bb32a96409cf238164f1c10'
+    client = Client(account_sid, auth_token)
+    call = client.calls.create(
+                            twiml='<Response><Say>hello success learners</say><Response>',
+                        to='+918975138699',
+                        from_='+12543308390'
+)
+    print(call.sid)
+    return HttpResponse('call done')
 
