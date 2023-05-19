@@ -56,13 +56,13 @@ def LoginPage(request):
 
 def phonecall(request):
     
-    account_sid = 'ACbea04b09b51f590c97eec87fa6b25e10'
-    auth_token = '00121e7f5bb32a96409cf238164f1c10'
+    account_sid = ''
+    auth_token = ''
     client = Client(account_sid, auth_token)
     call = client.calls.create(
                             twiml='<Response><Say>hello success learners</say><Response>',
-                        to='+918975138699',
-                        from_='+12543308390'
+                        to='',
+                        from_=''
 )
     print(call.sid)
     return HttpResponse('call done')
